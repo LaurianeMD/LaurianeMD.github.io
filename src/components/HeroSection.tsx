@@ -50,7 +50,7 @@ const HeroSection = () => {
         <div className="animate-fade-in">
           <div className="mb-8">
             <img
-              src="public\photo_Lauriane.jpg"
+              src="photo_Lauriane.jpg"
               alt="Professional headshot"
               className="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-tech-blue shadow-lg"
             />

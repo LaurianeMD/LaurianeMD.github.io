@@ -1,40 +1,33 @@
+/* 1) L'@import DOIT être en tout début de fichier */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
+/* 2) Puis Tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
-
+/* 3) Tes layers / styles */
 @layer base {
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
-
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
-
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-
     --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
-
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
-
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
-
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
-
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
@@ -79,93 +72,41 @@
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
+  * { @apply border-border; }
 
   body {
     @apply bg-background text-foreground transition-colors duration-300;
     font-family: 'Inter', sans-serif;
   }
 
-  .font-mono {
-    font-family: 'JetBrains Mono', monospace;
-  }
+  .font-mono { font-family: 'JetBrains Mono', monospace; }
 }
 
 @layer components {
-  .section-padding {
-    @apply py-20 px-4 sm:px-6 lg:px-8;
-  }
-  
-  .container-width {
-    @apply max-w-7xl mx-auto;
-  }
-  
-  .typing-effect {
-    @apply border-r-2 border-tech-blue pr-1;
-    animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
-  }
-  
-  .gradient-text {
-    @apply bg-gradient-to-r from-tech-blue to-tech-purple bg-clip-text text-transparent;
-  }
-  
-  .card-hover {
-    @apply transition-all duration-300 hover:shadow-lg hover:shadow-tech-blue/20 hover:-translate-y-1;
-  }
-  
-  .nav-link {
-    @apply relative overflow-hidden transition-colors duration-300 hover:text-tech-blue;
-  }
-  
-  .nav-link::after {
-    @apply absolute bottom-0 left-0 h-0.5 w-0 bg-tech-blue transition-all duration-300;
-    content: '';
-  }
-  
-  .nav-link:hover::after {
-    @apply w-full;
-  }
+  .section-padding { @apply py-20 px-4 sm:px-6 lg:px-8; }
+  .container-width { @apply max-w-7xl mx-auto; }
+  .typing-effect { @apply border-r-2 border-tech-blue pr-1; animation: typing 3s steps(40,end), blink .75s step-end infinite; }
+  .gradient-text { @apply bg-gradient-to-r from-tech-blue to-tech-purple bg-clip-text text-transparent; }
+  .card-hover { @apply transition-all duration-300 hover:shadow-lg hover:shadow-tech-blue/20 hover:-translate-y-1; }
+  .nav-link { @apply relative overflow-hidden transition-colors duration-300 hover:text-tech-blue; }
+  .nav-link::after { @apply absolute bottom-0 left-0 h-0.5 w-0 bg-tech-blue transition-all duration-300; content: ''; }
+  .nav-link:hover::after { @apply w-full; }
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 .hero-background {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(59,130,246,.1) 0%, rgba(139,92,246,.1) 100%);
 }
-
 .dark .hero-background {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(59,130,246,.05) 0%, rgba(139,92,246,.05) 100%);
 }
 
-/* Dark mode adjustments for sections */
-.dark section {
-  @apply text-gray-100;
-}
-
-.dark .bg-gray-50 {
-  @apply bg-gray-800;
-}
-
-.dark .text-gray-600 {
-  @apply text-gray-300;
-}
-
-.dark .text-gray-700 {
-  @apply text-gray-200;
-}
-
-.dark .text-gray-800 {
-  @apply text-gray-100;
-}
-
-.dark .bg-gray-900 {
-  @apply bg-gray-950;
-}
-
-.dark .border-gray-700 {
-  @apply border-gray-600;
-}
+/* Dark mode tweaks */
+.dark section { @apply text-gray-100; }
+.dark .bg-gray-50 { @apply bg-gray-800; }
+.dark .text-gray-600 { @apply text-gray-300; }
+.dark .text-gray-700 { @apply text-gray-200; }
+.dark .text-gray-800 { @apply text-gray-100; }
+.dark .bg-gray-900 { @apply bg-gray-950; }
+.dark .border-gray-700 { @apply border-gray-600; }

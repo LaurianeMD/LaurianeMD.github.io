@@ -6,58 +6,84 @@ import { Badge } from '@/components/ui/badge';
 const ExperienceSection = () => {
   const experiences = [
     {
-      period: '2022 - Present',
-      title: 'Senior Data Scientist',
-      company: 'TechCorp Solutions',
+      period: 'Apr 2025 – Present',
+      title: 'CMMS Manager (promoted from Biomedical Equipment Technician Intern)',
+      company: 'SSM Systèmes Médicaux SA · Dakar, Senegal',
       type: 'Full-time',
-      description: 'Lead a team of 5 data scientists developing innovative AI solutions. Implemented complete MLOps architecture and developed high-value predictive models that drive business decisions.',
+      description:
+        'Manage the Computerized Maintenance Management System (CMMS) and support biomedical service operations across sites.',
       achievements: [
-        'Reduced operational costs by 35% through automated processes',
-        'Deployed 15+ machine learning models to production',
-        'Trained 20+ colleagues in AI and machine learning practices'
+        'Coordinate CMMS administration; standardize workflows, SLAs, and preventive/corrective schedules with senior engineers',
+        'Organize & prioritize work orders; coordinate technicians and vendors; support compliant installations/calibrations and after-sales service',
+        'Monitor maintenance data, prepare KPI reports, and recommend actions to improve uptime and spare-parts planning'
       ],
-      skills: ['Python', 'TensorFlow', 'AWS', 'Docker', 'Kubernetes']
+      skills: ['CMMS', 'Maintenance Planning', 'Process Standardization', 'KPI Reporting']
     },
     {
-      period: '2020 - 2022',
-      title: 'Data Scientist',
-      company: 'FinanceAI Inc.',
-      type: 'Full-time',
-      description: 'Developed fraud detection and risk analysis models for the financial sector. Collaborated closely with business teams to translate requirements into technical solutions.',
+      period: 'Apr 2025 – Present',
+      title: 'Co-founder, Lead Data Scientist & Acting CGO (Part-time)',
+      company: 'AfriAI Solutions · Dakar, Senegal',
+      type: 'Part-time',
+      description:
+        'As co-founder and Lead Data Scientist, I shape the vision of AfriAI Solutions by bridging AI product development, business growth, and community impact.',
       achievements: [
-        'Achieved 99.2% accuracy in fraud detection',
-        'Generated $2M in annual savings through improved risk models',
-        'Reduced false positives by 60% in fraud detection system'
+        'Designed and delivered AI prototypes, including a **multimodal pre-consultation health chatbot** (text/audio + NLP/LLM)',
+        'Implemented lightweight **MLOps workflows** (Git, Docker, W&B) to support scalable and reproducible experiments',
+        'Co-led the **Python & Data Analysis training program (7 weeks)**, empowering students and early-career professionals',
+        'Defined and executed the **go-to-market strategy**, including partnerships, community-driven growth, and content initiatives',
+        'Established and tracked **OKRs/KPIs** to measure progress and impact across both technical and business domains'
       ],
-      skills: ['Python', 'Scikit-learn', 'SQL', 'Tableau', 'Git']
+      skills: [
+        'Python',
+        'PyTorch',
+        'Streamlit',
+        'MLOps (Git, Docker, W&B)',
+        'Leadership',
+        'Go-to-Market Strategy'
+      ]
     },
     {
-      period: '2019 - 2020',
-      title: 'Junior Data Analyst',
-      company: 'StartupTech',
-      type: 'Full-time',
-      description: 'First professional experience in a dynamic startup environment. Analyzed user data, created dashboards, and supported strategic decision-making processes.',
-      achievements: [
-        'Implemented automated reporting system',
-        'Analyzed behavior patterns of 10K+ users',
-        'Optimized conversion rate by 25%'
-      ],
-      skills: ['R', 'SQL', 'Power BI', 'Excel', 'Statistics']
-    },
-    {
-      period: '2019',
-      title: 'Data Science Intern',
-      company: 'University Research Lab',
+      period: 'Aug 2024 – Mar 2025',
+      title: 'Biomedical Equipment Technician Intern',
+      company: 'SSM Systèmes Médicaux SA · Dakar, Senegal',
       type: 'Internship',
-      description: 'Capstone project in university research lab. Worked on medical image processing algorithms using deep learning for automated diagnosis assistance.',
+      description:
+        'Hands-on maintenance and support on diagnostic/therapeutic devices under senior supervision.',
       achievements: [
-        'Published research paper in peer-reviewed journal',
-        'Developed novel image segmentation algorithm',
-        'Presented findings at 3 scientific conferences'
+        'Assisted with troubleshooting, calibration, and technical documentation',
+        'Supported installation and acceptance testing of biomedical equipment'
       ],
-      skills: ['Python', 'OpenCV', 'PyTorch', 'Jupyter', 'LaTeX']
+      skills: ['Biomedical Equipment', 'Calibration', 'Technical Documentation']
+    },
+    {
+      period: 'Nov 2024',
+      title: 'AI Fellowship — FutureIntern',
+      company: 'FutureIntern (Remote) · Dakar Institute of Technology',
+      type: 'Fellowship',
+      description:
+        'One-month AI fellowship focused on hands-on NLP/GenAI projects and deliverables.',
+      achievements: [
+        'Completed 3 projects: GPT-2 Text Generation, Stable Diffusion Image Generation, Markov Chain Text Generation',
+        'Delivered notebooks & demos within program timelines (Nov 1–30, 2024)'
+      ],
+      skills: ['NLP', 'Generative AI', 'Gradio', 'Colab/Notebooks']
+    },
+    {
+      period: 'Sep 2023 – Mar 2024',
+      title: 'Biomedical Technician Trainee',
+      company: 'MGR3AK Sarl · Dakar, Senegal',
+      type: 'Internship',
+      description:
+        'Technical and market-facing trainee role supporting biomedical sales and client success.',
+      achievements: [
+        'Developed knowledge of medical devices (stethoscopes, blood monitors, paravents, gloves, etc.)',
+        'Prepared technical proposals to support client satisfaction and growth',
+        'Conducted market prospections and collected strategic data to boost adoption'
+      ],
+      skills: ['Biomedical Devices', 'Technical Proposals', 'Market Prospection']
     }
   ];
+
 
   return (
     <section id="experience" className="section-padding">
