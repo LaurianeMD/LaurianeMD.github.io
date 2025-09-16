@@ -27,11 +27,10 @@ const ExperienceSection = () => {
       description:
         'As co-founder and Lead Data Scientist, I shape the vision of AfriAI Solutions by bridging AI product development, business growth, and community impact.',
       achievements: [
-        'Designed and delivered AI prototypes, including a **multimodal pre-consultation health chatbot** (text/audio + NLP/LLM)',
-        'Implemented lightweight **MLOps workflows** (Git, Docker, W&B) to support scalable and reproducible experiments',
-        'Co-led the **Python & Data Analysis training program (7 weeks)**, empowering students and early-career professionals',
-        'Defined and executed the **go-to-market strategy**, including partnerships, community-driven growth, and content initiatives',
-        'Established and tracked **OKRs/KPIs** to measure progress and impact across both technical and business domains'
+        'Designed and delivered AI prototypes, including a multimodal pre-consultation health chatbot** (text/audio + NLP/LLM)',
+        'Co-led the Python & Data Analysis training program (7 weeks), empowering students and early-career professionals',
+        'Defined and executed the go-to-market strategy, including partnerships, community-driven growth, and content initiatives',
+        'Established and tracked OKRs/KPIs to measure progress and impact across both technical and business domains'
       ],
       skills: [
         'Python',

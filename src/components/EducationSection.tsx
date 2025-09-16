@@ -6,55 +6,66 @@ import { Badge } from '@/components/ui/badge';
 const EducationSection = () => {
   const education = [
     {
-      year: '2019',
-      degree: 'Master of Science in Data Science & AI',
-      school: 'University of Technology',
-      description: 'Specialized program in machine learning, deep learning, and big data analytics. Thesis project focused on computer vision applications in healthcare.',
-      grade: 'Magna Cum Laude',
-      skills: ['Machine Learning', 'Deep Learning', 'Statistics', 'Python', 'R']
+      year: '2023 – 2025',
+      degree: 'Master in Artificial Intelligence & Data Science',
+      school: 'Dakar Institute of Technology · Dakar, Senegal',
+      description:
+        'Focused on applied machine learning, deep learning, NLP, and computer vision. Completed capstone projects in healthcare AI, fraud detection, and generative AI.',
+      grade: 'Graduated',
+      skills: ['Machine Learning', 'Deep Learning', 'NLP', 'Computer Vision', 'Python', 'PyTorch', 'TensorFlow']
     },
     {
-      year: '2017',
-      degree: 'Bachelor of Science in Computer Science',
-      school: 'State University',
-      description: 'Comprehensive foundation in computer science with focus on software development, algorithms, and database systems.',
-      grade: 'Cum Laude',
-      skills: ['Algorithms', 'Programming', 'Databases', 'Java', 'C++']
+      year: '2019 – 2022',
+      degree: 'Bachelor in Biomedical Engineering',
+      school: 'ESP-UCAD · Dakar, Senegal',
+      description:
+        'Acquired technical foundations in biomedical systems, electronics, and healthcare technologies. Applied knowledge through academic projects and internships in biomedical equipment maintenance.',
+      grade: 'Graduated',
+      skills: ['Biomedical Engineering', 'Electronics', 'Medical Devices', 'Maintenance', 'Healthcare Systems']
     }
   ];
 
   const certifications = [
     {
-      name: 'AWS Certified Machine Learning - Specialty',
-      issuer: 'Amazon Web Services',
-      year: '2023',
-      level: 'Expert'
+      name: 'Artificial Intelligence Fundamentals with Capstone Project',
+      issuer: 'IBM',
+      year: 'July 2025',
+      level: 'Intermediate',
+      link: 'https://www.credly.com/badges/af4c2a09-353d-4a0a-9b13-bed0ccb043c6/public_url'
+    },
+    
+    {
+      title: 'Fundamentals of Deep Learning',
+      issuer: 'NVIDIA',
+      date: '2025',
+      link: 'https://learn.nvidia.com/certificates?id=9Dft9GA9QHeAY0wE1v-rSw',
+      description:
+        'Completed NVIDIA’s Fundamentals of Deep Learning program, covering neural networks, optimization techniques, and real-world applications.'
+    },
+
+    {
+      name: 'AI Programming with Python',
+      issuer: 'Udacity',
+      year: 'October 2024',
+      level: 'Intermediate',
+      link: 'https://www.udacity.com/certificate/e/9cae6de6-2dce-11ef-bf38-5b75f3f41698'
     },
     {
-      name: 'TensorFlow Developer Certificate',
-      issuer: 'Google',
-      year: '2022',
-      level: 'Advanced'
+      name: 'Introduction to Generative AI with AWS',
+      issuer: 'Udacity',
+      year: 'October 2024',
+      level: 'Introductory',
+      link: 'https://www.udacity.com/certificate/e/7d6896d8-17e8-11ef-ac8f-e370719c9447'
     },
     {
-      name: 'Microsoft Azure AI Fundamentals',
+      name: 'Azure AI Fundamentals',
       issuer: 'Microsoft',
-      year: '2022',
-      level: 'Fundamental'
-    },
-    {
-      name: 'Deep Learning Specialization',
-      issuer: 'Coursera - DeepLearning.AI',
-      year: '2021',
-      level: 'Advanced'
-    },
-    {
-      name: 'Certified Scrum Master',
-      issuer: 'Scrum Alliance',
-      year: '2021',
-      level: 'Professional'
+      year: 'March 2024',
+      level: 'Fundamental',
+      link: 'https://learn.microsoft.com/en-us/users/laurianembagdjedorenan-9823/credentials/feeae7c1e5ed5c62?ref=https%3A%2F%2Fwww.linkedin.com%2F&source=docs'
     }
   ];
+
 
   return (
     <section id="education" className="section-padding bg-gray-50">
