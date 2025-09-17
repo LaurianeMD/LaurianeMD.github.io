@@ -88,11 +88,18 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="border-t border-gray-700 pt-8 text-center text-gray-400">
-          <p>
-            © {currentYear} {t('hero.name')}. {t('footer.copyright')}
-          </p>
-        </div>
+            <div className="border-t border-gray-700 pt-8 text-center text-gray-400 space-y-2">
+              {/* 🚧 Under construction notice */}
+              <p className="italic text-yellow-400">
+                🚧 This site is under construction — more content coming soon!
+              </p>
+
+              <p>
+                © {currentYear} {t('hero.name')}. {t('footer.copyright')}
+              </p>
+            </div>
+
+
       </div>
     </footer>
   );

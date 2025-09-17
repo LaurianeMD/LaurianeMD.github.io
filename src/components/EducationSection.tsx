@@ -33,16 +33,13 @@ const EducationSection = () => {
       level: 'Intermediate',
       link: 'https://www.credly.com/badges/af4c2a09-353d-4a0a-9b13-bed0ccb043c6/public_url'
     },
-    
     {
-      title: 'Fundamentals of Deep Learning',
+      name: 'Fundamentals of Deep Learning',
       issuer: 'NVIDIA',
-      date: '2025',
-      link: 'https://learn.nvidia.com/certificates?id=9Dft9GA9QHeAY0wE1v-rSw',
-      description:
-        'Completed NVIDIA’s Fundamentals of Deep Learning program, covering neural networks, optimization techniques, and real-world applications.'
+      year: 'November 2024',
+      level: 'Intermediate',
+      link: 'https://learn.nvidia.com/certificates?id=9Dft9GA9QHeAY0wE1v-rSw'
     },
-
     {
       name: 'AI Programming with Python',
       issuer: 'Udacity',
@@ -130,21 +127,17 @@ const EducationSection = () => {
               {certifications.map((cert, index) => (
                 <Card key={index} className="card-hover">
                   <CardContent className="p-4">
-                    <div className="flex items-start justify-between">
+                    <div className="flex items-start justify-between gap-4">
                       <div className="flex-1">
-                        <h4 className="font-semibold text-gray-800 mb-1">
-                          {cert.name}
-                        </h4>
-                        <p className="text-tech-purple text-sm font-medium mb-1">
-                          {cert.issuer}
-                        </p>
-                        <div className="flex items-center gap-3">
+                        <h4 className="font-semibold text-gray-800 mb-1">{cert.name}</h4>
+                        <p className="text-tech-purple text-sm font-medium mb-1">{cert.issuer}</p>
+                        <div className="flex items-center gap-3 mb-3">
                           <span className="text-xs text-gray-500">{cert.year}</span>
-                          <Badge 
-                            variant="outline" 
+                          <Badge
+                            variant="outline"
                             className={`text-xs ${
-                              cert.level === 'Expert' 
-                                ? 'border-red-400 text-red-600' 
+                              cert.level === 'Expert'
+                                ? 'border-red-400 text-red-600'
                                 : cert.level === 'Advanced'
                                 ? 'border-orange-400 text-orange-600'
                                 : 'border-blue-400 text-blue-600'
@@ -154,10 +147,23 @@ const EducationSection = () => {
                           </Badge>
                         </div>
                       </div>
+
+                      {cert.link && (
+                        <a
+                          href={cert.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="shrink-0 inline-flex items-center px-3 py-2 rounded-md bg-tech-blue text-white text-sm hover:bg-tech-purple transition-colors"
+                          title="View certificate"
+                        >
+                          View Certificate
+                        </a>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
               ))}
+
             </div>
           </div>
         </div>

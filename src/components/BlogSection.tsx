@@ -9,61 +9,71 @@ const BlogSection = () => {
   const { t } = useLanguage();
 
   const blogPosts = [
-    {
-      title: t('blog.posts.ml.title'),
-      description: t('blog.posts.ml.description'),
-      date: '2024-03-15',
-      category: t('blog.categories.ml'),
-      readTime: '8 min',
-      link: '#',
-      type: 'article'
-    },
-    {
-      title: t('blog.posts.ai.title'),
-      description: t('blog.posts.ai.description'),
-      date: '2024-02-28',
-      category: t('blog.categories.ai'),
-      readTime: '12 min',
-      link: '#',
-      type: 'article'
-    },
-    {
-      title: t('blog.posts.research.title'),
-      description: t('blog.posts.research.description'),
-      date: '2024-01-20',
-      category: t('blog.categories.research'),
-      readTime: '15 min',
-      link: '#',
-      type: 'publication'
-    },
-    {
-      title: t('blog.posts.tutorial.title'),
-      description: t('blog.posts.tutorial.description'),
-      date: '2023-12-10',
-      category: t('blog.categories.tutorial'),
-      readTime: '10 min',
-      link: '#',
-      type: 'article'
-    },
-    {
-      title: t('blog.posts.conference.title'),
-      description: t('blog.posts.conference.description'),
-      date: '2023-11-05',
-      category: t('blog.categories.conference'),
-      readTime: '6 min',
-      link: '#',
-      type: 'presentation'
-    },
-    {
-      title: t('blog.posts.data.title'),
-      description: t('blog.posts.data.description'),
-      date: '2023-10-22',
-      category: t('blog.categories.data'),
-      readTime: '9 min',
-      link: '#',
-      type: 'article'
-    }
-  ];
+
+      {
+    title: t('blog.posts.medium.title'),
+    description: t('blog.posts.medium.description'),
+    date: '2025-04-20', // date réelle ou approximative
+    category: 'Artificial Intelligence',
+    readTime: '4 min',
+    link: 'https://medium.com/@dmbagdjelauriane/from-cvs-to-smart-hiring-building-an-ai-powered-resume-evaluator-with-gemini-dbf3647255a3',
+    type: 'article'
+  }
+// <    {
+//       title: t('blog.posts.ml.title'),
+//       description: t('blog.posts.ml.description'),
+//       date: '2024-03-15',
+//       category: t('blog.categories.ml'),
+//       readTime: '8 min',
+//       link: '#',
+//       type: 'article'
+//     },
+//     {
+//       title: t('blog.posts.ai.title'),
+//       description: t('blog.posts.ai.description'),
+//       date: '2024-02-28',
+//       category: t('blog.categories.ai'),
+//       readTime: '12 min',
+//       link: '#',
+//       type: 'article'
+//     },
+//     {
+//       title: t('blog.posts.research.title'),
+//       description: t('blog.posts.research.description'),
+//       date: '2024-01-20',
+//       category: t('blog.categories.research'),
+//       readTime: '15 min',
+//       link: '#',
+//       type: 'publication'
+//     },
+//     {
+//       title: t('blog.posts.tutorial.title'),
+//       description: t('blog.posts.tutorial.description'),
+//       date: '2023-12-10',
+//       category: t('blog.categories.tutorial'),
+//       readTime: '10 min',
+//       link: '#',
+//       type: 'article'
+//     },
+//     {
+//       title: t('blog.posts.conference.title'),
+//       description: t('blog.posts.conference.description'),
+//       date: '2023-11-05',
+//       category: t('blog.categories.conference'),
+//       readTime: '6 min',
+//       link: '#',
+//       type: 'presentation'
+//     },
+//     {
+//       title: t('blog.posts.data.title'),
+//       description: t('blog.posts.data.description'),
+//       date: '2023-10-22',
+//       category: t('blog.categories.data'),
+//       readTime: '9 min',
+//       link: '#',
+//       type: 'article'
+//     }
+  ]; 
 
   const getTypeColor = (type: string) => {
     switch (type) {

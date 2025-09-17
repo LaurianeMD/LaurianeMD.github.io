@@ -27,7 +27,7 @@ const ExperienceSection = () => {
       description:
         'As co-founder and Lead Data Scientist, I shape the vision of AfriAI Solutions by bridging AI product development, business growth, and community impact.',
       achievements: [
-        'Designed and delivered AI prototypes, including a multimodal pre-consultation health chatbot** (text/audio + NLP/LLM)',
+        'Designed and delivered AI prototypes, including a multimodal pre-consultation health chatbot (text/audio + NLP/LLM)',
         'Co-led the Python & Data Analysis training program (7 weeks), empowering students and early-career professionals',
         'Defined and executed the go-to-market strategy, including partnerships, community-driven growth, and content initiatives',
         'Established and tracked OKRs/KPIs to measure progress and impact across both technical and business domains'
@@ -56,11 +56,11 @@ const ExperienceSection = () => {
     },
     {
       period: 'Nov 2024',
-      title: 'AI Fellowship — FutureIntern',
-      company: 'FutureIntern (Remote) · Dakar Institute of Technology',
-      type: 'Fellowship',
+      title: 'AI Engineer',
+      company: 'FutureIntern  ',
+      type: 'Internship',
       description:
-        'One-month AI fellowship focused on hands-on NLP/GenAI projects and deliverables.',
+        'One-month AI Internship focused on hands-on NLP/GenAI projects and deliverables.',
       achievements: [
         'Completed 3 projects: GPT-2 Text Generation, Stable Diffusion Image Generation, Markov Chain Text Generation',
         'Delivered notebooks & demos within program timelines (Nov 1–30, 2024)'
