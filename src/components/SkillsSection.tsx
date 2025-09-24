@@ -60,7 +60,7 @@ const SkillsSection = () => {
   const languages = [
     { name: 'French', level: 'Native/C2' },
     { name: 'English', level: 'B2 - Intermediate' },
-    { name: 'Spanih', level: 'A2 - Basic' }
+    { //name: 'Spanish', level: 'A2 - Basic' }
   ];
 
   return (
