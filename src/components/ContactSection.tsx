@@ -1,15 +1,30 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { motion, useInView } from 'framer-motion';
 import { Mail, Linkedin, Github, Phone, ArrowUpRight } from 'lucide-react';
-import { useForm, ValidationError } from '@formspree/react';
 
 const ContactSection = () => {
-  const [state, handleSubmit] = useForm('maqaznlp');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [succeeded, setSucceeded] = useState(false);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: data,
+    });
+    if (response.ok) {
+      setSucceeded(true);
+    }
+    setIsSubmitting(false);
+  };
 
   const contactInfo = [
     { icon: Mail, label: 'Correspondence', value: 'dmbagdjelauriane@gmail.com', href: 'mailto:dmbagdjelauriane@gmail.com' },
@@ -86,23 +101,23 @@ const ContactSection = () => {
           >
             <span className="meta-label text-foreground/60 block mb-6">( Dispatch a message )</span>
 
-            {state.succeeded ? (
+            {succeeded ? (
               <div className="border-t border-foreground/30 pt-8">
                 <p className="font-display text-2xl text-foreground italic">Message dispatched.</p>
                 <p className="mt-2 text-foreground/60 text-sm">{"Thank you for reaching out. I'll respond shortly."}</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6 border-t border-foreground/30 pt-8">
+                <input type="hidden" name="access_key" value="0b0eaed4-05d7-4db4-a75c-4f371ffd24e4" />
+                <input type="hidden" name="subject" value="New message from Portfolio" />
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="meta-label text-foreground/60 block mb-2">— Full Name</label>
                     <Input id="name" name="name" type="text" required className="rounded-none border-0 border-b border-foreground/30 bg-transparent px-0 focus-visible:ring-0 focus-visible:border-foreground font-display text-lg" />
-                    <ValidationError field="name" errors={state.errors} className="text-red-500 text-xs mt-1" />
                   </div>
                   <div>
                     <label htmlFor="email" className="meta-label text-foreground/60 block mb-2">— Email Address</label>
                     <Input id="email" name="email" type="email" required className="rounded-none border-0 border-b border-foreground/30 bg-transparent px-0 focus-visible:ring-0 focus-visible:border-foreground font-display text-lg" />
-                    <ValidationError field="email" errors={state.errors} className="text-red-500 text-xs mt-1" />
                   </div>
                 </div>
                 <div>
@@ -112,15 +127,14 @@ const ContactSection = () => {
                 <div>
                   <label htmlFor="message" className="meta-label text-foreground/60 block mb-2">— Message</label>
                   <Textarea id="message" name="message" required className="rounded-none border-0 border-b border-foreground/30 bg-transparent px-0 focus-visible:ring-0 focus-visible:border-foreground font-display text-lg min-h-[120px] resize-none" />
-                  <ValidationError field="message" errors={state.errors} className="text-red-500 text-xs mt-1" />
                 </div>
                 <Button
                   type="submit"
-                  disabled={state.submitting}
+                  disabled={isSubmitting}
                   className="rounded-none w-full bg-foreground text-background hover:bg-foreground/85 py-6 group"
                 >
                   <span className="meta-label flex items-center justify-center gap-3">
-                    {state.submitting ? 'Dispatching…' : 'Send dispatch'}
+                    {isSubmitting ? 'Dispatching…' : 'Send dispatch'}
                     <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition-transform" />
                   </span>
                 </Button>
