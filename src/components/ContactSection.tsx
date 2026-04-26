@@ -1,194 +1,140 @@
-
-import React, { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import React, { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import { motion, useInView } from 'framer-motion';
+import { Mail, Linkedin, Github, Phone, ArrowUpRight } from 'lucide-react';
 
 const ContactSection = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    toast({
-      title: "Message sent successfully!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
-    });
-    
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    toast({ title: 'Message dispatched.', description: "Thank you for reaching out. I'll respond shortly." });
     setFormData({ name: '', email: '', subject: '', message: '' });
     setIsSubmitting(false);
   };
 
   const contactInfo = [
-    {
-      label: 'Email',
-      value: 'dmbagdjelauriane@gmail.com',
-      href: 'mailto:dmbagdjelauriane@gmail.com'
-    },
-    {
-      label: 'LinkedIn',
-      value: '/in/lauriane-mbagdje-dorenan',
-      href: 'https://linkedin.com/in/lauriane-mbagdje-dorenan'
-    },
-    {
-      label: 'GitHub',
-      value: '/LaurianeMD',
-      href: 'https://github.com/LaurianeMD'
-    },
-    {
-      label: 'Phone',
-      value: '(+221)774251944',
-      href: 'tel:+221774251944'
-    }
+    { icon: Mail, label: 'Correspondence', value: 'dmbagdjelauriane@gmail.com', href: 'mailto:dmbagdjelauriane@gmail.com' },
+    { icon: Linkedin, label: 'LinkedIn', value: '/in/lauriane-mbagdje-dorenan', href: 'https://linkedin.com/in/lauriane-mbagdje-dorenan' },
+    { icon: Github, label: 'GitHub', value: '/LaurianeMD', href: 'https://github.com/LaurianeMD' },
+    { icon: Phone, label: 'Telephone', value: '(+221) 77 425 19 44', href: 'tel:+221774251944' },
   ];
 
   return (
-    <section id="contact" className="section-padding">
+    <section id="contact" className="section-padding relative" ref={ref}>
       <div className="container-width">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4 gradient-text">Get In Touch</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Let's discuss your projects and explore collaboration opportunities
-          </p>
-        </div>
-        
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
-          <div>
-            <Card className="h-fit">
-              <CardHeader>
-                <CardTitle className="text-tech-blue">Contact Information</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                {contactInfo.map((info, index) => (
-                  <div key={index} className="flex items-center justify-between">
-                    <span className="font-medium text-gray-700">
-                      {info.label}:
-                    </span>
-                    <a
-                      href={info.href}
-                      className="text-tech-blue hover:text-tech-purple transition-colors"
-                      target={info.href.startsWith('http') ? '_blank' : undefined}
-                      rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    >
-                      {info.value}
-                    </a>
-                  </div>
-                ))}
-                
-                <div className="pt-6 border-t">
-                  <p className="text-gray-600 leading-relaxed">
-                    I'm always open to interesting opportunities and meaningful 
-                    collaborations. Whether you have a project in mind, want to 
-                    discuss potential partnerships, or just want to connect, 
-                    feel free to reach out!
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="grid lg:grid-cols-12 gap-8 mb-20 pb-12 border-b border-foreground/15"
+        >
+          <div className="lg:col-span-3">
+            <span className="meta-label text-foreground/60 block mb-2">§ VII</span>
+            <span className="meta-label text-foreground/60 block">Correspondence</span>
           </div>
-          
-          {/* Contact Form */}
-          <div>
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-tech-blue">Send Me a Message</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                        Full Name
-                      </label>
-                      <Input
-                        id="name"
-                        name="name"
-                        type="text"
-                        required
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        placeholder="Your full name"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                        Email Address
-                      </label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        placeholder="your@email.com"
-                      />
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                      Subject
-                    </label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      type="text"
-                      required
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      placeholder="What's this about?"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                      Message
-                    </label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      required
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      placeholder="Tell me about your project or idea..."
-                      className="min-h-[120px]"
-                    />
-                  </div>
-                  
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-tech-blue hover:bg-tech-purple transition-colors"
+          <div className="lg:col-span-9">
+            <h2 className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-medium text-foreground tracking-tight leading-[0.95]">
+              <span className="italic font-light">Let's</span>
+              <br />
+              correspond.
+            </h2>
+          </div>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-12 gap-8">
+          {/* Contact directory */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="lg:col-span-5"
+          >
+            <span className="meta-label text-foreground/60 block mb-6">( Directory )</span>
+            <div className="border-t border-foreground/30">
+              {contactInfo.map((info, index) => {
+                const Icon = info.icon;
+                return (
+                  <a
+                    key={index}
+                    href={info.href}
+                    target={info.href.startsWith('http') ? '_blank' : undefined}
+                    rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    className="group grid grid-cols-12 gap-4 py-5 border-b border-foreground/15 hover:bg-foreground/5 transition-colors"
                   >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-          </div>
+                    <div className="col-span-1 pt-2">
+                      <Icon className="w-4 h-4 text-foreground/60" />
+                    </div>
+                    <div className="col-span-3 meta-label text-foreground/60 pt-2">{info.label}</div>
+                    <div className="col-span-7 font-display text-lg text-foreground italic group-hover:not-italic transition-all">
+                      {info.value}
+                    </div>
+                    <div className="col-span-1 flex justify-end pt-2">
+                      <ArrowUpRight className="w-4 h-4 text-foreground/40 group-hover:text-foreground group-hover:rotate-12 transition-all" />
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+            <p className="mt-8 text-base text-foreground/70 leading-relaxed max-w-md">
+              I'm always open to interesting opportunities and meaningful collaborations. Whether you have a project in mind or just want to connect — feel free to reach out.
+            </p>
+          </motion.div>
+
+          {/* Form */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:col-span-7"
+          >
+            <span className="meta-label text-foreground/60 block mb-6">( Dispatch a message )</span>
+            <form onSubmit={handleSubmit} className="space-y-6 border-t border-foreground/30 pt-8">
+              <div className="grid sm:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="name" className="meta-label text-foreground/60 block mb-2">— Full Name</label>
+                  <Input id="name" name="name" type="text" required value={formData.name} onChange={handleInputChange} className="rounded-none border-0 border-b border-foreground/30 bg-transparent px-0 focus-visible:ring-0 focus-visible:border-foreground font-display text-lg" />
+                </div>
+                <div>
+                  <label htmlFor="email" className="meta-label text-foreground/60 block mb-2">— Email Address</label>
+                  <Input id="email" name="email" type="email" required value={formData.email} onChange={handleInputChange} className="rounded-none border-0 border-b border-foreground/30 bg-transparent px-0 focus-visible:ring-0 focus-visible:border-foreground font-display text-lg" />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="subject" className="meta-label text-foreground/60 block mb-2">— Subject</label>
+                <Input id="subject" name="subject" type="text" required value={formData.subject} onChange={handleInputChange} className="rounded-none border-0 border-b border-foreground/30 bg-transparent px-0 focus-visible:ring-0 focus-visible:border-foreground font-display text-lg" />
+              </div>
+              <div>
+                <label htmlFor="message" className="meta-label text-foreground/60 block mb-2">— Message</label>
+                <Textarea id="message" name="message" required value={formData.message} onChange={handleInputChange} className="rounded-none border-0 border-b border-foreground/30 bg-transparent px-0 focus-visible:ring-0 focus-visible:border-foreground font-display text-lg min-h-[120px] resize-none" />
+              </div>
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="rounded-none w-full bg-foreground text-background hover:bg-foreground/85 py-6 group"
+              >
+                <span className="meta-label flex items-center justify-center gap-3">
+                  {isSubmitting ? 'Dispatching…' : 'Send dispatch'}
+                  <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition-transform" />
+                </span>
+              </Button>
+            </form>
+          </motion.div>
         </div>
       </div>
     </section>
