@@ -1,31 +1,15 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/hooks/use-toast';
 import { motion, useInView } from 'framer-motion';
 import { Mail, Linkedin, Github, Phone, ArrowUpRight } from 'lucide-react';
+import { useForm, ValidationError } from '@formspree/react';
 
 const ContactSection = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
+  const [state, handleSubmit] = useForm('maqaznlp');
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    toast({ title: 'Message dispatched.', description: "Thank you for reaching out. I'll respond shortly." });
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    setIsSubmitting(false);
-  };
 
   const contactInfo = [
     { icon: Mail, label: 'Correspondence', value: 'dmbagdjelauriane@gmail.com', href: 'mailto:dmbagdjelauriane@gmail.com' },
@@ -37,7 +21,6 @@ const ContactSection = () => {
   return (
     <section id="contact" className="section-padding relative" ref={ref}>
       <div className="container-width">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -50,7 +33,7 @@ const ContactSection = () => {
           </div>
           <div className="lg:col-span-9">
             <h2 className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-medium text-foreground tracking-tight leading-[0.95]">
-              <span className="italic font-light">Let's</span>
+              <span className="italic font-light">{"Let's"}</span>
               <br />
               correspond.
             </h2>
@@ -58,7 +41,6 @@ const ContactSection = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-12 gap-8">
-          {/* Contact directory */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -92,11 +74,10 @@ const ContactSection = () => {
               })}
             </div>
             <p className="mt-8 text-base text-foreground/70 leading-relaxed max-w-md">
-              I'm always open to interesting opportunities and meaningful collaborations. Whether you have a project in mind or just want to connect — feel free to reach out.
+              {"I'm always open to interesting opportunities and meaningful collaborations. Whether you have a project in mind or just want to connect — feel free to reach out."}
             </p>
           </motion.div>
 
-          {/* Form */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -104,36 +85,47 @@ const ContactSection = () => {
             className="lg:col-span-7"
           >
             <span className="meta-label text-foreground/60 block mb-6">( Dispatch a message )</span>
-            <form onSubmit={handleSubmit} className="space-y-6 border-t border-foreground/30 pt-8">
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="name" className="meta-label text-foreground/60 block mb-2">— Full Name</label>
-                  <Input id="name" name="name" type="text" required value={formData.name} onChange={handleInputChange} className="rounded-none border-0 border-b border-foreground/30 bg-transparent px-0 focus-visible:ring-0 focus-visible:border-foreground font-display text-lg" />
+
+            {state.succeeded ? (
+              <div className="border-t border-foreground/30 pt-8">
+                <p className="font-display text-2xl text-foreground italic">Message dispatched.</p>
+                <p className="mt-2 text-foreground/60 text-sm">{"Thank you for reaching out. I'll respond shortly."}</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6 border-t border-foreground/30 pt-8">
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="name" className="meta-label text-foreground/60 block mb-2">— Full Name</label>
+                    <Input id="name" name="name" type="text" required className="rounded-none border-0 border-b border-foreground/30 bg-transparent px-0 focus-visible:ring-0 focus-visible:border-foreground font-display text-lg" />
+                    <ValidationError field="name" errors={state.errors} className="text-red-500 text-xs mt-1" />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="meta-label text-foreground/60 block mb-2">— Email Address</label>
+                    <Input id="email" name="email" type="email" required className="rounded-none border-0 border-b border-foreground/30 bg-transparent px-0 focus-visible:ring-0 focus-visible:border-foreground font-display text-lg" />
+                    <ValidationError field="email" errors={state.errors} className="text-red-500 text-xs mt-1" />
+                  </div>
                 </div>
                 <div>
-                  <label htmlFor="email" className="meta-label text-foreground/60 block mb-2">— Email Address</label>
-                  <Input id="email" name="email" type="email" required value={formData.email} onChange={handleInputChange} className="rounded-none border-0 border-b border-foreground/30 bg-transparent px-0 focus-visible:ring-0 focus-visible:border-foreground font-display text-lg" />
+                  <label htmlFor="subject" className="meta-label text-foreground/60 block mb-2">— Subject</label>
+                  <Input id="subject" name="subject" type="text" required className="rounded-none border-0 border-b border-foreground/30 bg-transparent px-0 focus-visible:ring-0 focus-visible:border-foreground font-display text-lg" />
                 </div>
-              </div>
-              <div>
-                <label htmlFor="subject" className="meta-label text-foreground/60 block mb-2">— Subject</label>
-                <Input id="subject" name="subject" type="text" required value={formData.subject} onChange={handleInputChange} className="rounded-none border-0 border-b border-foreground/30 bg-transparent px-0 focus-visible:ring-0 focus-visible:border-foreground font-display text-lg" />
-              </div>
-              <div>
-                <label htmlFor="message" className="meta-label text-foreground/60 block mb-2">— Message</label>
-                <Textarea id="message" name="message" required value={formData.message} onChange={handleInputChange} className="rounded-none border-0 border-b border-foreground/30 bg-transparent px-0 focus-visible:ring-0 focus-visible:border-foreground font-display text-lg min-h-[120px] resize-none" />
-              </div>
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="rounded-none w-full bg-foreground text-background hover:bg-foreground/85 py-6 group"
-              >
-                <span className="meta-label flex items-center justify-center gap-3">
-                  {isSubmitting ? 'Dispatching…' : 'Send dispatch'}
-                  <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition-transform" />
-                </span>
-              </Button>
-            </form>
+                <div>
+                  <label htmlFor="message" className="meta-label text-foreground/60 block mb-2">— Message</label>
+                  <Textarea id="message" name="message" required className="rounded-none border-0 border-b border-foreground/30 bg-transparent px-0 focus-visible:ring-0 focus-visible:border-foreground font-display text-lg min-h-[120px] resize-none" />
+                  <ValidationError field="message" errors={state.errors} className="text-red-500 text-xs mt-1" />
+                </div>
+                <Button
+                  type="submit"
+                  disabled={state.submitting}
+                  className="rounded-none w-full bg-foreground text-background hover:bg-foreground/85 py-6 group"
+                >
+                  <span className="meta-label flex items-center justify-center gap-3">
+                    {state.submitting ? 'Dispatching…' : 'Send dispatch'}
+                    <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition-transform" />
+                  </span>
+                </Button>
+              </form>
+            )}
           </motion.div>
         </div>
       </div>
