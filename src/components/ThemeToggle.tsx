@@ -1,25 +1,21 @@
-
 import React from 'react';
-import { Button } from '@/components/ui/button';
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
 
 const ThemeToggle = () => {
   const { theme, toggleTheme } = useTheme();
+  const isDark = theme === 'dark';
 
   return (
-    <Button
-      variant="outline"
-      size="sm"
+    <button
+      type="button"
       onClick={toggleTheme}
-      className="w-9 h-9 p-0 border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800"
+      aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+      className="font-meta text-foreground/80 hover:text-foreground border border-foreground/20 hover:border-foreground/60 px-3 h-9 rounded-none inline-flex items-center gap-2 transition-colors"
     >
-      {theme === 'light' ? (
-        <Moon className="h-4 w-4 text-gray-600 dark:text-gray-300" />
-      ) : (
-        <Sun className="h-4 w-4 text-gray-600 dark:text-gray-300" />
-      )}
-    </Button>
+      {isDark ? <Sun className="w-3 h-3" /> : <Moon className="w-3 h-3" />}
+      <span className="hidden sm:inline">{isDark ? 'Light' : 'Dark'}</span>
+    </button>
   );
 };
 

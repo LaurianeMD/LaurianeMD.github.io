@@ -1,29 +1,36 @@
-
 import React from 'react';
-import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const LanguageSwitcher = () => {
   const { language, setLanguage } = useLanguage();
 
   return (
-    <div className="flex items-center space-x-1">
-      <Button
-        variant={language === 'en' ? 'default' : 'ghost'}
-        size="sm"
+    <div
+      role="group"
+      aria-label="Language"
+      className="font-meta border border-foreground/20 h-9 inline-flex items-center px-2 gap-1 rounded-none"
+    >
+      <button
+        type="button"
         onClick={() => setLanguage('en')}
-        className="text-xs px-2 py-1 h-8"
+        aria-pressed={language === 'en'}
+        className={`px-1 transition-colors ${
+          language === 'en' ? 'text-foreground' : 'text-foreground/70 hover:text-foreground'
+        }`}
       >
         EN
-      </Button>
-      <Button
-        variant={language === 'fr' ? 'default' : 'ghost'}
-        size="sm"
+      </button>
+      <span className="text-foreground/40" aria-hidden="true">·</span>
+      <button
+        type="button"
         onClick={() => setLanguage('fr')}
-        className="text-xs px-2 py-1 h-8"
+        aria-pressed={language === 'fr'}
+        className={`px-1 transition-colors ${
+          language === 'fr' ? 'text-foreground' : 'text-foreground/70 hover:text-foreground'
+        }`}
       >
         FR
-      </Button>
+      </button>
     </div>
   );
 };
