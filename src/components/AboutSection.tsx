@@ -186,7 +186,7 @@ const AboutSection = () => {
           <div className="lg:col-span-9">
             <p className="text-base text-foreground/70 mb-8 max-w-xl">{t('about.documentsDesc')}</p>
             <div className="flex flex-col sm:flex-row gap-px bg-foreground/15 border border-foreground/15">
-              <a href="/CV_Lauriane_Mbagdje_Dorenan.pdf" download className="flex-1 group flex items-center justify-between bg-background hover:bg-foreground hover:text-background px-6 py-5 transition-colors">
+              <a href="public\CV_Lauriane_Mbagdje_Dorenan.pdf" download className="flex-1 group flex items-center justify-between bg-background hover:bg-foreground hover:text-background px-6 py-5 transition-colors">
                 <span className="flex items-center gap-3">
                   <Download className="w-4 h-4" />
                   <span className="font-display text-xl">{t('hero.downloadCV')}</span>
